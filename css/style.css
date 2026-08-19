@@ -54,6 +54,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    overflow-x: hidden;
 }
 
 body {
@@ -1002,9 +1003,20 @@ img {
     .contact-cards-container {
         grid-template-columns: 1fr;
     }
+
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 @media (max-width: 768px) {
+    /* Prevent ANY horizontal scroll */
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    /* Navbar mobile */
     .nav-menu {
         position: fixed;
         top: 76px;
@@ -1018,6 +1030,7 @@ img {
         padding: 3rem 2rem;
         transition: var(--transition);
         border-top: 1px solid rgba(255, 255, 255, 0.08);
+        z-index: 1001;
     }
 
     .nav-menu.active {
@@ -1039,26 +1052,73 @@ img {
         display: none;
     }
 
+    .btn-nav {
+        display: none;
+    }
+
     .mobile-menu-btn {
         display: block;
     }
 
-    .hero-title {
-        font-size: 2.25rem;
+    .nav-container {
+        padding: 0 1rem;
     }
 
+    .brand-text {
+        font-size: 1.05rem;
+    }
+
+    /* Hero mobile */
+    .hero-section {
+        padding-top: 90px;
+        padding-bottom: 2.5rem;
+        min-height: auto;
+    }
+
+    .hero-content {
+        margin-bottom: 2.5rem;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    /* Hero stats: stack vertically */
     .hero-stats-card {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 1.5rem;
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: 1.25rem;
     }
 
     .stat-divider {
         display: none;
     }
 
+    .stat-item {
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    /* Services */
     .services-grid {
         grid-template-columns: 1fr;
+    }
+
+    .service-card {
+        padding: 1.75rem 1.5rem;
+    }
+
+    /* About section */
+    .about-text-col .section-title {
+        font-size: 2rem;
+    }
+
+    .about-subblock {
+        padding: 1.5rem;
     }
 
     .mission-vision-grid {
@@ -1067,26 +1127,65 @@ img {
 
     .about-checklist-grid {
         grid-template-columns: 1fr;
-        padding: 1.5rem;
+        padding: 1.25rem;
     }
 
     .about-stats-row {
         grid-template-columns: 1fr;
     }
 
+    .about-stat-box {
+        padding: 1.25rem;
+    }
+
+    .stat-badge-number {
+        font-size: 1.85rem;
+    }
+
+    /* Contact section */
+    .contact-action-card {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .contact-card-value {
+        font-size: 0.9rem;
+        word-break: break-all;
+    }
+
+    .contact-card-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
+    }
+
+    /* Footer */
+    .footer {
+        padding-top: 3rem;
+    }
+
     .footer-container {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 2rem;
+    }
+
+    .footer-desc {
+        max-width: 100%;
     }
 }
 
 @media (max-width: 480px) {
     .hero-title {
-        font-size: 1.85rem;
+        font-size: 1.7rem;
+    }
+
+    .hero-badge {
+        font-size: 0.78rem;
+        padding: 0.35rem 0.85rem;
     }
 
     .btn-hero {
         width: 100%;
+        justify-content: center;
     }
 
     .hero-buttons {
@@ -1095,11 +1194,48 @@ img {
     }
 
     .section {
-        padding: 4rem 0;
+        padding: 3.5rem 0;
     }
 
     .section-title {
-        font-size: 1.85rem;
+        font-size: 1.65rem;
+    }
+
+    .section-description {
+        font-size: 0.95rem;
+    }
+
+    .section-header {
+        margin-bottom: 2.5rem;
+    }
+
+    /* About stats even smaller */
+    .stat-badge-icon {
+        width: 46px;
+        height: 46px;
+        font-size: 1.3rem;
+    }
+
+    .stat-badge-number {
+        font-size: 1.65rem;
+    }
+
+    .logo-showcase-card {
+        max-width: 260px;
+        padding: 1.75rem 1.25rem;
+    }
+
+    .mv-card {
+        padding: 1.5rem;
+    }
+
+    .check-item {
+        font-size: 0.9rem;
+    }
+
+    /* Contact cards */
+    .contact-card-value {
+        font-size: 0.85rem;
     }
 
     .floating-whatsapp-btn {
