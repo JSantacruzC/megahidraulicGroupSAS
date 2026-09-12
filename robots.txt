@@ -1,0 +1,9 @@
+# robots.txt para MEGAHIDRAULIC GROUP SAS
+User-agent: *
+Allow: /
+
+# Deshabilitar rastreo de páginas de error
+Disallow: /404.html
+
+# Ubicación del Sitemap (reemplazar con el dominio oficial tras asignación)
+Sitemap: https://megahidraulic.com/sitemap.xml

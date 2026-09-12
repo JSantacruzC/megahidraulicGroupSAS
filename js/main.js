@@ -22,13 +22,17 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', handleNavbarScroll);
     handleNavbarScroll(); // Initial check
 
-    // 3. Mobile Menu Toggle
+    // 3. Mobile Menu Toggle & Accessibility
     if (mobileMenuToggle && navMenu) {
-        mobileMenuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
+        const toggleMenu = (isOpen) => {
+            const shouldOpen = isOpen !== undefined ? isOpen : !navMenu.classList.contains('active');
+            navMenu.classList.toggle('active', shouldOpen);
+            mobileMenuToggle.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+            mobileMenuToggle.setAttribute('aria-label', shouldOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
+            
             const icon = mobileMenuToggle.querySelector('i');
             if (icon) {
-                if (navMenu.classList.contains('active')) {
+                if (shouldOpen) {
                     icon.classList.remove('fa-bars');
                     icon.classList.add('fa-xmark');
                 } else {
@@ -36,18 +40,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     icon.classList.add('fa-bars');
                 }
             }
+        };
+
+        mobileMenuToggle.addEventListener('click', () => {
+            toggleMenu();
         });
 
         // Close menu on nav item click
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                const icon = mobileMenuToggle.querySelector('i');
-                if (icon) {
-                    icon.classList.remove('fa-xmark');
-                    icon.classList.add('fa-bars');
-                }
+                toggleMenu(false);
             });
+        });
+
+        // Close menu on Escape key press
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                toggleMenu(false);
+                mobileMenuToggle.focus();
+            }
         });
     }
 
